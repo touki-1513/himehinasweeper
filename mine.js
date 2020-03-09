@@ -108,9 +108,11 @@ var app = new Vue({
 				clearInterval(this.timer);
 			}
 		},
+		// openしたマスに配置するもの
 		_replaceChar: function(box) {
 			if (box.hasBomb) {
-				box.char = 'x';
+				// 爆弾の見た目指定
+				box.char = 'B';
 				box.classIndex = 11;
 			} else if (box.numNeighborBombs > 0) {
 				box.char = box.numNeighborBombs;
@@ -160,8 +162,10 @@ Vue.component("box-template", {
 				return;
 			}
 			this.b.isFlagged = !this.b.isFlagged;
+			// マスにフラグを立てる（マスが無フラグのとき）
 			if (this.b.isFlagged) {
-				this.b.char = '?';
+				// フラグの見た目指定
+				this.b.char = '|>';
 				this.b.classIndex = 10;
 			} else {
 				this.b.char = '';

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Mine Sweeper</title>
+	<title>まいんすいーぱ</title>
 	<link rel="stylesheet" type="text/css" href="mine.css">
 </head>
 
@@ -11,24 +11,24 @@
 
 <body>
 	<div id="mineApp">
-		<h3>Mine Sweeper</h3>
+		<h3>鈴木爆発 出張解除</h3>
 		<div>
 			<div vertical-align="middle">
 				<li>
-					<label>height</label>
+					<label>縦の箱の数</label>
 					<input type="number" min="2" max="40" v-model="height">
 				</li>
 				<li>
-					<label>widht</label>
+					<label>横の箱の数</label>
 					<input type="number" min="2" max="40" v-model="width"></li>
 				</li>
 				<li>
-					<label>ratio</label>
+					<label>爆発物の割合</label>
 					<input type="number" min="0.0" max="1.0" step="0.01" v-model="ratio">
 				</li>
 				<li>
-					<a href="#" class="square_btn" @click="start">start</a>
-					<a href="#" class="square_btn" @click="reset">reset</a>
+					<a href="#" class="pink_square_btn" @click="start">すたーと！</a>
+					<a href="#" class="blue_square_btn" @click="reset">りせっと</a>
 				</li>
 			</div>
 		</div>
