@@ -41,8 +41,11 @@
 		</div>
 		<div>
 			<p v-if="isStart">{{ duration }}</p>
-			<p v-if="isSuccess">SUCCESS</p>
-			<p v-if="isFailure">FAILURE</p>
+			<p v-if="isSuccess">［解除］<br>この度は爆弾専門店 鈴木爆発をご利用いただき、誠にありがとうございました<br>
+			それでは 3秒後爆発させて頂きます</p>
+			<p v-if="isFailure">［爆発］<br>
+			この度は爆弾専門店 鈴木爆発をご利用いただき、誠にありがとうございました<br>
+			またのご利用をお待ちしております</p>
 		</div>
 	</div>
 
