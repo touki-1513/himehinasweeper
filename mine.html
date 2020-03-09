@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mine Sweeper</title>
+	<link rel="stylesheet" type="text/css" href="mine.css">
+</head>
+
+<script type="text/x-template" id="box-template">
+	<td @click="push" @contextmenu="flag">{{ b.char }}</td>
+</script>
+
+<body>
+	<div id="mineApp">
+		<h3>Mine Sweeper</h3>
+		<div>
+			<div vertical-align="middle">
+				<li>
+					<label>height</label>
+					<input type="number" min="2" max="40" v-model="height">
+				</li>
+				<li>
+					<label>widht</label>
+					<input type="number" min="2" max="40" v-model="width"></li>
+				</li>
+				<li>
+					<label>ratio</label>
+					<input type="number" min="0.0" max="1.0" step="0.01" v-model="ratio">
+				</li>
+				<li>
+					<a href="#" class="square_btn" @click="start">start</a>
+					<a href="#" class="square_btn" @click="reset">reset</a>
+				</li>
+			</div>
+		</div>
+		<div v-if="isStart">
+			<table>
+				<tr v-for="row in boxes">
+					<td is="box-template" v-for="box in row" :class="classes[box.classIndex]" :b="box" @open="open"></td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<p v-if="isStart">{{ duration }}</p>
+			<p v-if="isSuccess">SUCCESS</p>
+			<p v-if="isFailure">FAILURE</p>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+	<script src="mine.js"></script>
+</body>
+
+</html>

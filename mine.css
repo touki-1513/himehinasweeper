@@ -1,0 +1,128 @@
+/* font */
+* {
+	font-family: 'arial';
+	font-weight: bold;
+}
+
+/* margin */
+/* font */
+* {
+	font-family: 'arial';
+	font-weight: bold;
+}
+
+/* margin */
+div + div {
+	margin-top: 1.2em;
+}
+li + li {
+	margin-top: 1.2em;
+}
+
+/* h3 */
+h3 {
+	display: inline-block;
+	padding: 0.3em 1.0em;
+	color: dimgray;
+	background: lightgrey;
+}
+
+/* ul li */
+li {
+	list-style: none;
+	margin: 0px;
+}
+label {
+	width: 50px;
+	margin-right: 10px;
+	display: inline-block;
+	padding: 0.3em 1.0em;
+	float: left;
+	text-align: center;
+	color: dimgray;
+	background: lightgrey;
+}
+
+/* input */
+input {
+	height: 18px;
+	width: 50px;
+	color: dimgray;
+	display: inline-block;
+	padding: 0.3em 1.0em;
+	text-align: center;
+	font-size: 16px;
+	border: none;
+	background: lightgrey;
+}
+
+/* a */
+a.square_btn{
+	width: 50px;
+	display: inline-block;
+	margin-right: 6px;
+	padding: 0.3em 1.0em;
+	text-decoration: none;
+	text-align: center;
+	font-weight: bold;
+	color: dimgray;
+	background: lightgrey;
+}
+a.square_btn:hover {
+	color: lightgrey;
+	background: dimgray;
+}
+
+/* table */
+table {
+	border-collapse: collapse;
+	border: solid thick;
+}
+
+/* td */
+td {
+	height: 2.0em;
+	width: 2.0em;
+	padding: 0;
+	border: solid thin;
+	border-color: black;
+	text-align: center;
+	font-weight: bold;
+	background-color: lightgrey;
+}
+td.zero {
+	color: black;
+}
+td.one {
+	color: blue;
+}
+td.two {
+	color: green;
+}
+td.three {
+	color: red;
+}
+td.four {
+	color: navy;
+}
+td.five {
+	color: olive;
+}
+td.six {
+	color: cyan;
+}
+td.seven {
+	color: black;
+}
+td.eight {
+	color: gray;
+}
+td.unknown {
+	color: black;
+}
+td.flag {
+	color: black;
+}
+td.bomb {
+	color: mediumvioletred;
+}
