@@ -1,5 +1,6 @@
 /* font */
 * {
+	background-color: #fffdd6;
 	font-family: 'arial';
 	font-weight: bold;
 }
@@ -16,7 +17,7 @@ div + div {
 	margin-top: 1.2em;
 }
 li + li {
-	margin-top: 1.2em;
+	margin-top: 0.5em;
 }
 
 /* h3 */
@@ -37,7 +38,7 @@ label {
 	width: 100px;
 	margin-right: 10px;
 	display: inline-block;
-	padding: 0.3em 1.0em;
+	padding: 0.3em 0.3em;
 	float: left;
 	text-align: center;
 	color: dimgray;
@@ -50,7 +51,7 @@ input {
 	width: 50px;
 	color: dimgray;
 	display: inline-block;
-	padding: 0.3em 1.0em;
+	padding: 0.3em 0.3em;
 	text-align: center;
 	font-size: 16px;
 	border: none;
