@@ -12,59 +12,182 @@
 </script>
 
 <meta charset="UTF-8">
-<title>TOP : 鈴木爆発 マインスイーパ</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/marx/2.0.4/marx.css">
-<link rel="stylesheet" href="./index.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    
+<title>鈴木爆発 マインスイーパ</title>
+
+<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="icon/favicon.ico">
+
+    <!-- jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
 </head>
+
+
+<script type="text/x-template" id="box-template">
+	<td @click="push" @contextmenu="flag">{{ b.char }}</td>
+</script>
+
+
 
 <body>
 <main>
-	<h1>鈴木爆発 出張解除</h1>
-		<p>いわゆるマインスイーパです</p>
-		<a href="mine.html"><button>鈴木爆発 出張解除に出かける</button></a>
-
-		<h2>遊び方</h2>
-			<h3>マインスイーパのルール</h3>
-				<p>隠れている全ての爆弾（<font color = "mediumvioletred"><b>B</b></font>のマーク）を避けて、箱をオープンできたらクリアです。</p>
-				<ol>
-					<li>左クリックで箱をオープンします。</li>
-					<li>箱をオープンすると、隣接する8つの箱に隠れている爆弾の個数が表示されます。</li>
-					<li>オープンした箱に隣接する爆弾がない場合、爆弾と隣り合うまで自動で箱がオープンします。</li>
-					<li>右クリックでフラグを立てられます。爆弾があると思しき怪しい箱につけて目印にしましょう。</li>
-					<li>爆弾の隠れている箱をオープンするとゲームオーバーです。全ての箱がオープンします。</li>
-				</ol>
-			<h3>画面の説明</h3>
-				<h4>縦の箱の数</h4>
-					<p>縦の箱の数を、増やしたり減らしたりできます。<br>
-					初期値は10個です。</p>
-				<h4>横の箱の数</h4>
-					<p>横の箱の数を、増やしたり減らしたりできます。<br>
-					初期値は10個です。</p>
-				<h4>爆発物の割合</h4>
-					<p>爆発物の割合を、上げたり下げたりできます。<br>
-					初期値は0.1で、箱の数の10%ぐらいの個数が爆弾になっています。<br>
-					（爆弾の個数は誤差±10個ぐらいあるので、あくまで目安です）</p>
-				<h4>すたーと！</h4>
-					<p>スタートボタンです。<br>
-					箱が表示され、カウントがスタートします。</p>
-				<h4>りせっと</h4>
-					<p>リセットボタンです。<br>
-					箱の数と爆発物の割合がリセットされ、初期表示状態に戻ります。</p>
-
-
+    <div class="warp">
+    <div class="box">
+<h1><div class="ss">鈴木爆発</div><div class="ss">出張解除</div></h1>
+    
+<!-- マインスイーパ-->
+	<div id="mineApp">
+			
+	<div class="container">
+			
+				
+		<div class="a">
+			<div class="pa">
+				<label>縦の箱の数</label>
+				<input type="number" min="2" max="40" v-model="height" >
+			</div>
+			<div class="pa">
+				<label>横の箱の数</label>
+				<input type="number" min="2" max="40" v-model="width">
+			</div>
+			<div class="pa">
+				<label>爆発物の割合</label>
+				<input type="number" min="0.0" max="1.0" step="0.01" v-model="ratio">
+			</div>
+		</div>
+			<div class="b">
+				<div class="item_2"><a href="#" class="pink_square_btn" @click="start">すたーと！</a></div>
+				<div class="item_2"><a href="#" class="blue_square_btn" @click="reset">りせっと</a></div>
+			</div>
 		
+	</div>
+		
+		<div v-if="isStart">
+			<table>
+				<tr v-for="row in boxes">
+					<td is="box-template" v-for="box in row" :class="classes[box.classIndex]" :b="box" @open="open"></td>
+				</tr>
+			</table>
+		</div>
+		<div class="container">
+			<p v-if="isStart">{{ duration }}</p>
+			<p v-if="isSuccess">［解除］<br>この度は爆弾専門店 鈴木爆発をご利用いただき、誠にありがとうございました<br>
+			それでは 3秒後爆発させて頂きます</p>
+			<p v-if="isFailure">［爆発］<br>
+			この度は爆弾専門店 鈴木爆発をご利用いただき、誠にありがとうございました<br>
+			またのご利用をお待ちしております</p>
+		</div>
+	</div>
 
-		<h2>クレジット</h2>
-			<ul>
-			<li>このページを作った人：<a href="https://twitter.com/touki_1513">橙葵</a></li>
-			<li>雰囲気だけ感じられる：<a href="https://himehina.jp/">ヒメヒナ</a>のお二人</li>
-			<li>参考動画：<b>【爆弾解除】オペレーター鈴木、ド天然すぎて田中大爆発！</b></li>
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/bJeOJe3UVWM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-			</ul>
-			<br>
-			<p>ご意見とか感想とかあれば<a href="https://twitter.com/touki_1513">橙葵のTwitter</a>までいただけるとうれしいです。</p>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+	<script src="mine.js"></script>
+
+</div>
+<!-- マインスイーパここまで　-->
+
+
+
+
+
+<div class="box">
+		<h2>遊び方</h2>
+        <h3 class="p1">いわゆるマインスイーパです</h3>
+
+        <ul class="rule">
+            <li class="text"><font color = "#EC407A">すたーと！</font>をクリック。</li>
+			<li class="text2">左クリックで箱をオープンします。</li>
+			<li class="text">箱をオープンすると、隣接する8つの箱に隠れている爆弾の個数が表示されます。</li>
+			<li class="text2">オープンした箱に隣接する爆弾がない場合、爆弾と隣り合うまで自動で箱がオープンします。</li>
+			<li class="text">右クリックでフラグを立てられます。爆弾があると思しき怪しい箱につけて目印にしましょう。</li>
+			<li class="text2">隠れている全ての爆弾（<font color = "mediumvioletred"><b>B</b></font>のマーク）を避けて、箱をオープンできたらクリアです。</li>
+            <li class="text">爆弾の隠れている箱をオープンしてしまうとゲームオーバーです。<br>全ての箱がオープンします。</li>
+		</ul>
+</div>
+        
+<div class="box">
+    <h2 class="top">画面の説明</h2>
+    <div class="rule">
+		<div>
+            <h4 class="text">縦の箱の数</h4>
+			<p>縦の箱の数を、増やしたり減らしたりできます。<br>
+			初期値は10個です。</p>
+        </div>
+		<div>
+            <h4 class="text2">横の箱の数</h4>
+			<p>横の箱の数を、増やしたり減らしたりできます。<br>
+			初期値は10個です。</p>
+        </div>
+        <div>
+            <h4 class="text">爆発物の割合</h4>
+			<p>爆発物の割合を、上げたり下げたりできます。<br>
+			初期値は0.1で、箱の数の10%ぐらいの個数が爆弾になっています。<br>
+			（爆弾の個数は誤差±10個ぐらいあるので、あくまで目安です）</p>
+		</div>
+        <div>
+            <h4 class="text2">すたーと！</h4>
+			<p>スタートボタンです。<br>
+			箱が表示され、カウントがスタートします。</p>
+        </div>
+		<div>
+            <h4 class="text">りせっと</h4>
+			<p>リセットボタンです。<br>
+			箱の数と爆発物の割合がリセットされ、初期表示状態に戻ります。</p>
+        </div>
+    </div>
+</div>
+        
+<div class="box">
+
+    <h2>クレジット</h2>
+
+	<ul class="p2">
+        <li><span class="text_twitter">このページを作った人：</span><span class="text_twitter"><a href="https://twitter.com/touki_1513" target="_blank" rel="noopener noreferrer" class="cp_link">橙葵</a></span></li>
+		<li><span class="text_twitter">雰囲気だけ感じられる：</span><span class="text_twitter"><a href="https://himehina.jp/" target="_blank" rel="noopener noreferrer" class="cp_link_2"><span>ヒメヒナ</span></a>のお二人</span></li>
+		<li>参考動画：<b>【爆弾解除】オペレーター鈴木、ド天然すぎて田中大爆発！</b></li>
+            <div class="youtube">
+                <iframe width="853" height="480" src="https://www.youtube.com/embed/bJeOJe3UVWM" frameborder="0"  allowfullscreen></iframe>
+            </div>
+    </ul>
+    <p class="twitter_link"><span class="text_twitter">ご意見とか感想とかあれば</span><span class="text_twitter"><a href="https://twitter.com/touki_1513" target="_blank" rel="noopener noreferrer" class="cp_link">橙葵のTwitter</a>までいただけるとうれしいです。</span></p>
+</div>
+        
+</div>
 </main>
 
+    <!-- pagetopボタン -->
+    <p id="pageTop"><a href="#"><i class="fas fa-angle-double-up"></i></a></p>
+<script>
+
+$(function(){
+var topBtn=$('#pageTop');
+topBtn.hide();
+ 
+$(window).scroll(function(){
+  if($(this).scrollTop()>80){
+    topBtn.fadeIn();
+
+  }else{
+
+    topBtn.fadeOut();
+
+  }
+});
+ 
+
+// ◇ボタンをクリックしたら、スクロールして上に戻る
+topBtn.click(function(){
+  $('body,html').animate({
+  scrollTop: 0},500);
+  return false;
+
+});
+});
+</script>
 <script>
 console.log('GitHub Pages Sample');
 </script>
