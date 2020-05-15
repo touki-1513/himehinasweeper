@@ -203,6 +203,12 @@ input{
     height: calc(100% - 1.5em)
 }
 
+.start{
+    display:inline;
+    color: #EC407A;
+    font-weight: 600;
+}
+
 .text{
     position:relative;
 	padding: 0em 0.3em 0.3em 1.3em;
@@ -302,7 +308,7 @@ ul{
 .twitter_link{
     color:#585858;
     text-align:left;
-    
+    margin: 10px 3% 10px;
 }
 @media only screen and (max-width: 500px) {
   .twitter_link { font-size:85% }
@@ -353,28 +359,73 @@ ul{
 @media (prefers-color-scheme: dark) {
   :root {
     --main-text: #e6e6e6;
-      --main-bg: #141414;}
+      --main-bg: #191E2E;}
     
-    .box{
-        background-color: var(--main-bg);
-    height: calc(100% - 1.5em);
+.box{
+    background-color: var(--main-bg);
+    background: rgba(255,255,255,0.1);
     }
     
-    h2:first-letter{
+h2:first-letter{
     color: #e6e6e6;}
     
-    .pa{
-        color: #1a1a1a;
-    }
-    .pa, pink_square_btn, blue_square_btn{
-        background-color: #f5f5f5;
-    }
-    
-    .twitter_link{
+.pa{
     color: var(--main-text);
-    text-align:left;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    }
     
+.start{
+    color: #C73666;
 }
+    
+.blue_square_btn {
+	color: #1872CC;
+	border: 2px solid #1872CC;
+    background-color: #f5f5f5;
+}
+.blue_square_btn:hover{
+    background: #1872CC;
+	color: #f5f5f5;
+}
+    
+.pink_square_btn {
+	color: #BA3260;
+	border: 2px solid #BA3260;
+    background-color: #f5f5f5;
+}
+.pink_square_btn:hover{
+    background: #BA3260;
+	color: #f5f5f5;
+}
+    
+.text:before {
+	border-color: transparent transparent transparent #1872CC;
+}
+.text2:before {
+	border-color: transparent transparent transparent #BA3260;
+}
+    
+    
+    
+.cp_link,.cp_link_2 span {
+	color: #C95534;
+}
+    
+.twitter_link{
+    color: var(--main-text);
+    }
+    
+input {
+color: var(--main-text);
+}
+
+
+#pageTop a {
+  background-color: #C95534;
+}
+
+
 }
 
 
@@ -546,7 +597,9 @@ td.bomb {
         height: 1.8em;
         width: 1.8em;
     }
-
+table {
+	border-color: #191E2E;
+}
 
 
 
